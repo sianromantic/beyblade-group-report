@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>戰鬥陀螺團購總結</title><meta name="description" content="戰鬥陀螺團購費用總結與每人訂購明細。">
+<style>
+:root{color-scheme:light;--ink:#1d1d1f;--muted:#6e6e73;--line:#e4e4e8;--blue:#0071e3;--soft:#f5f5f7}*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",sans-serif;-webkit-font-smoothing:antialiased}
+button,select,input{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #0071e3;outline-offset:3px}
+.toolbar{border-bottom:1px solid var(--line);background:rgba(255,255,255,.96);position:sticky;top:0;z-index:10}
+.toolinner{max-width:1220px;margin:auto;padding:13px 30px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-size:14px;font-weight:600;letter-spacing:.06em}.tools{display:flex;gap:17px;align-items:center}
+button.text{background:none;border:0;padding:5px 0;color:var(--blue);font-size:14px}.tools .primary{border:0;border-radius:20px;background:var(--blue);color:white;font-size:13px;padding:7px 15px}
+.report{max-width:1220px;margin:auto;padding:44px 30px 38px}.reporthead{display:flex;justify-content:space-between;gap:25px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.13em;color:var(--muted);margin:0 0 10px}h1{font-size:38px;font-weight:700;letter-spacing:-.04em;line-height:1.25;margin:0 0 13px}.sub{font-size:15px;color:var(--muted);margin:0}.total{text-align:right;white-space:nowrap}.total span{font-size:14px;color:var(--muted)}.total strong{display:block;font-size:44px;line-height:1.25;font-weight:650;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.total small{font-size:16px;margin-left:7px;font-weight:400}
+.strip{padding:17px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--muted);font-size:14px}.strip b{color:var(--ink);font-weight:600}.payments{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.shipping-trigger{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:2px 0;color:var(--blue);font-size:14px}.shipping-trigger b{color:var(--blue)}.section{margin:35px 0 42px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:14px}.sectionhead h2{font-size:23px;letter-spacing:-.02em;margin:0;font-weight:650}.small{font-size:13px;color:var(--muted)}.sectionhead .controls{display:flex;align-items:center;gap:16px}
+select{background:#fff;color:#333;padding:7px 30px 7px 12px;border:1px solid #d4d4d8;border-radius:6px;font-size:14px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='none' stroke='%236e6e73' stroke-width='1.5' d='m1 1 5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.tablewrap{overflow:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-color:#c4c4cb #f5f5f7}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;text-align:left;font-variant-numeric:tabular-nums}
+th,td{padding:14px 18px;border-bottom:1px solid #ececf0;white-space:nowrap}th{color:var(--muted);background:#f8f8fa;font-weight:500;font-size:13px;position:sticky;top:0;z-index:1}
+td.num,th.num{text-align:right}tbody tr:last-child td{border-bottom:0}tbody tr:hover td{background:#fafbfe}tfoot td{font-weight:650;background:#f5f5f7;border-top:1px solid var(--line);border-bottom:0}.details-table tfoot td:nth-child(2){background:#f5f5f7}
+.name{background:none;border:0;padding:0;color:var(--ink);font-weight:650;font-size:16px}.name:hover{color:var(--blue)}.sum{font-weight:650;font-size:20px;letter-spacing:-.02em}.amount-stack{display:inline-flex;flex-direction:column;align-items:flex-end;gap:2px}.amount-stack strong{color:var(--ink);font-size:16px;font-weight:650;letter-spacing:-.01em}.amount-stack small{color:var(--muted);font-size:11px;font-weight:400;letter-spacing:0}.summary-table tfoot .amount-stack strong{font-weight:700}
+.gripcol{width:35px;padding:0 3px 0 8px;text-align:center}.grip{font-size:19px;line-height:1;color:#a1a1a6;background:none;border:0;cursor:grab;padding:12px 6px;touch-action:none;user-select:none}.grip:active{cursor:grabbing}.dragging td{background:#edf5ff!important;box-shadow:inset 0 -1px #78a9ed}
+.hint{font-size:13px;color:#86868b;margin:10px 0 0}.number{color:#86868b;font-size:12px;display:inline-block;min-width:20px}.details-table{min-width:1080px}.productcell{display:flex;align-items:center;gap:14px;min-width:300px}.productimg{width:72px;height:72px;flex:0 0 72px;object-fit:contain;border-radius:10px;background:#fff}.model{font-size:15px;font-weight:600;letter-spacing:.01em}.product{font-size:13px;color:var(--muted);display:block;white-space:normal;min-width:180px;max-width:240px}.zero{color:#c3c3c9}.selected{background:#f0f6fd!important;color:#0063bd}.unit{color:#6e6e73}.details-table th:nth-child(2),.details-table td:nth-child(2){position:sticky;left:0;background:white;z-index:2;box-shadow:1px 0 0 #ececf0}.details-table th:nth-child(2){background:#f8f8fa;z-index:3}
+.foot{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:22px;color:#86868b;font-size:13px}.foot a{color:#6e6e73;text-decoration:none}.foot a:hover{color:var(--blue)}.selection{font-size:14px;color:#0071e3;margin:0 0 12px;min-height:0}.selection:empty{display:none}
+#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#1d1d1f;color:white;padding:11px 20px;border-radius:8px;font-size:14px;z-index:50}#toast:empty{display:none}
+.shipping-backdrop{position:fixed;inset:0;z-index:20;background:transparent}.shipping-drawer{position:fixed;z-index:21;top:0;right:0;bottom:0;width:min(440px,calc(100vw - 24px));overflow:auto;overscroll-behavior:contain;background:#fff;color:var(--ink);border-left:1px solid #e6e6ea;box-shadow:-14px 0 42px rgba(0,0,0,.14);transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.75,.25,1);outline:0}.shipping-drawer.is-open{transform:translateX(0)}.modalhead{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.97);backdrop-filter:blur(16px)}.modalhead h2{margin:0;font-size:20px;letter-spacing:-.02em}.modalhead p{margin:1px 0 0;color:var(--muted);font-size:13px}.close-modal{width:32px;height:32px;border:0;border-radius:50%;background:#f0f0f2;color:#555;font-size:20px;line-height:1}.modalbody{padding:0 20px 18px}.shipping-settings{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}.shipfield{min-width:0;padding:14px 13px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.shipfield:nth-child(odd){padding-left:0}.shipfield:nth-child(even){padding-right:0;border-right:0}.shipfield:nth-last-child(-n+2){border-bottom:0}.shipfield label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}.shipinput{display:flex;align-items:center;gap:6px}.shipinput input{width:100%;min-width:0;border:0;border-bottom:1px solid #b8b8bd;padding:2px 0 5px;outline:none;font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}.shipinput span{font-size:13px;color:var(--muted)}.shipoutput{padding:2px 0 5px;font-size:18px;font-weight:650}.shipflow{display:grid;grid-template-columns:1fr 1fr;margin:14px 0 0;background:var(--soft);border:1px solid var(--line);border-radius:10px;overflow:hidden}.shipterm{min-width:0;padding:10px 12px}.shipterm:nth-of-type(odd){border-right:1px solid var(--line)}.shipterm:nth-of-type(-n+2){border-bottom:1px solid var(--line)}.shipterm span{display:block;color:var(--muted);font-size:12px}.shipterm b{display:block;font-size:15px;font-weight:650}.shipterm.result b{color:var(--blue)}.shipop{display:none}.shipstatus{min-height:20px;padding:9px 0 3px;color:#c9342f;font-size:13px}.shipping-table{display:block;min-width:0;width:100%;font-size:14px}.shipping-table thead{display:none}.shipping-table tbody,.shipping-table tfoot{display:block}.shipping-table tbody tr{display:grid;grid-template-columns:58px minmax(112px,1fr) minmax(88px,auto);align-items:center;column-gap:10px;row-gap:4px;padding:13px 0;border-bottom:1px solid #ececf0}.shipping-table tbody td{padding:0;border:0;background:transparent!important}.shipping-table tbody td:nth-child(1){grid-column:1;grid-row:1 / span 2;font-weight:650}.shipping-table tbody td:nth-child(2){grid-column:2;grid-row:1}.shipping-table tbody td:nth-child(3){grid-column:2;grid-row:2;text-align:left}.shipping-table tbody td:nth-child(4){grid-column:3;grid-row:2}.shipping-table tbody td:nth-child(5){grid-column:3;grid-row:1}.shipping-table tbody td:nth-child(n+3){font-size:12px;color:var(--muted);font-weight:500}.shipping-table tbody td:nth-child(5){font-size:17px;color:var(--ink);font-weight:700}.shipping-table tbody td:nth-child(3)::before{content:'重量運費 ';font-weight:400}.shipping-table tbody td:nth-child(4)::before{content:'共同 ';font-weight:400}.shipping-table tbody td:nth-child(5)::before{content:'應付 ';font-size:12px;color:var(--muted);font-weight:400}.shipping-table input{width:88px;text-align:right;border:1px solid #d1d1d6;border-radius:7px;padding:6px 8px}.weightinput{display:flex;justify-content:flex-start;align-items:center;gap:6px}.shipping-table tfoot tr{display:flex;justify-content:space-between;align-items:center;padding:13px 0;background:#f5f5f7;border-top:1px solid var(--line)}.shipping-table tfoot td{padding:0 12px;border:0;background:transparent}.shipping-table tfoot td:nth-child(2),.shipping-table tfoot td:nth-child(3),.shipping-table tfoot td:nth-child(4){display:none}.shipping-table tfoot td:last-child::before{content:'運費合計 ';font-size:12px;color:var(--muted);font-weight:400}.feePart{font-weight:600}.shipnotes{margin-top:12px;color:var(--muted);font-size:13px}.shipnotes p{margin:3px 0}.shipnotes b{color:var(--ink);font-weight:600}.modalfoot{position:sticky;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.97);backdrop-filter:blur(16px)}.modalactions{display:flex;gap:8px}.secondary{border:0;background:none;color:var(--blue);padding:8px 0}.shipping-drawer .tablewrap{overflow:visible;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:700px){.toolinner{padding:12px 16px;gap:8px}.brand{font-size:12px}.tools{gap:12px}.tools button.text{font-size:12px}.tools .primary{font-size:12px;padding:6px 11px}.report{padding:28px 16px}.reporthead{display:block;padding-bottom:22px}h1{font-size:30px}.total{margin-top:24px;text-align:left}.total strong{font-size:40px}.strip{display:block;line-height:2}.payments{display:block}.shipping-trigger{margin-left:0;padding-left:0}.section{margin-top:28px}.sectionhead{align-items:start}.sectionhead h2{font-size:21px}.sectionhead .controls{gap:8px;flex-wrap:wrap;justify-content:end}th,td{padding:12px 14px}.summary-table{min-width:690px}.productcell{min-width:250px;gap:10px}.productimg{width:60px;height:60px;flex-basis:60px}.hint{line-height:1.7}.foot{display:block}.foot a{display:block;margin-top:10px}.desktop{display:none}.shipping-drawer{width:min(420px,calc(100vw - 12px))}.modalhead,.modalfoot{padding-left:16px;padding-right:16px}.modalbody{padding-left:16px;padding-right:16px}.modalfoot{align-items:flex-end}.modalfoot .small{max-width:220px}}
+@media print{@page{size:A4 landscape;margin:12mm}.toolbar,.gripcol,.controls,.hint,#toast,.shipping-drawer,.shipping-backdrop{display:none!important}body{font-size:12px}.report{max-width:none;padding:0}.reporthead{padding-bottom:14px}h1{font-size:27px}.total strong{font-size:32px}.strip{padding:10px 0}.section{margin:21px 0}.sectionhead{margin-bottom:9px}.sectionhead h2{font-size:19px}.tablewrap{overflow:visible}table{font-size:12px}.details-table{min-width:0}th,td{padding:7px 9px;font-size:12px;position:static!important}.sum{font-size:16px}.productcell{min-width:180px;gap:7px}.productimg{width:44px;height:44px;flex-basis:44px;border-radius:5px}.model{font-size:12px}.product{font-size:11px;min-width:125px;max-width:165px}.details-table td:nth-child(2){box-shadow:none}.foot{margin-top:15px;padding-top:10px;font-size:11px}.foot a{display:none}.name{font-size:13px}.section:last-of-type{break-before:page}tr{break-inside:avoid}thead{display:table-header-group}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<nav class="toolbar"><div class="toolinner"><span class="brand">團購總結</span><div class="tools"><button class="text" id="reset">還原順序</button><button class="text" id="download">下載網頁</button><button class="primary" id="print">列印／PDF</button></div></div></nav>
+<main class="report">
+<header class="reporthead"><div><p class="kicker">BEYBLADE · GROUP ORDER</p><h1>戰鬥陀螺團購總結</h1><p class="sub">5 位成員 · 13 個型號 · 60 件商品</p></div><div class="total"><span id="headerTotalLabel">商品＋運費總費用</span><strong id="headerGrandTotal">35,144<small>元</small></strong></div></header>
+<div class="strip"><div class="payments">訂金 <b>18,626 元</b>　＋　尾款 <b>9,276 元</b><button class="shipping-trigger" id="openShipping"><span>＋　運費</span><b id="shippingStrip">7,242 元</b></button></div><div>已由團購人全額代墊 · 金額皆為台幣</div></div>
+<section class="section" id="summary"><div class="sectionhead"><h2 id="summaryTitle">每人費用總表 (運費:直接/5)</h2><span class="small desktop">點選姓名，查看對應訂購項目</span></div><div class="tablewrap"><table class="summary-table"><thead><tr><th class="gripcol"></th><th>成員</th><th class="num">數量</th><th class="num">陀螺總金額</th><th class="num">運費</th><th class="num">總費用</th></tr></thead><tbody id="peopleRows"></tbody><tfoot><tr><td class="gripcol"></td><td>合計</td><td class="num">60</td><td class="num"><span class="amount-stack"><strong>27,902</strong><small>訂金 18,626 ＋ 尾款 9,276</small></span></td><td class="num" id="summaryShippingTotal">7,242</td><td class="num sum" id="summaryGrandTotal">35,144</td></tr></tfoot></table></div><p class="hint">拖曳左側 ⠿ 調整成員順序。也可選取拖曳按鈕，按上下方向鍵移動。</p></section>
+<section class="section" id="orders"><div class="sectionhead"><h2>訂購明細</h2><div class="controls"><label class="small desktop" for="personSelect">顯示</label><select id="personSelect" aria-label="選擇要查看的成員"><option value="-1">全部成員</option></select><button class="text" id="copy">複製明細</button></div></div><p class="selection" id="selection"></p><div class="tablewrap" tabindex="0" aria-label="訂購明細表，可左右捲動"><table class="details-table"><thead id="orderHead"></thead><tbody id="orderRows"></tbody><tfoot id="orderFoot"></tfoot></table></div><p class="hint">拖曳 ⠿ 可調整商品順序；寬表可左右捲動。單價以整數元呈現，套裝按一件計算。</p></section>
+<footer class="foot"><div>整理日期：2026 年 11 月 19 日 · 依本次確認的訂單與付款資料製作</div><a href="https://docs.google.com/spreadsheets/d/1qMVpcnuiEaCnC6UcdpdJ0bWlIFVkuJYgXdKb4fUDfWA/edit?gid=65824308#gid=65824308" target="_blank" rel="noopener">原始訂單表</a></footer>
+</main><div id="toast" role="status" aria-live="polite"></div>
+<div class="shipping-backdrop" id="shippingBackdrop" hidden></div>
+<aside class="shipping-drawer" id="shippingDrawer" aria-labelledby="shippingTitle" aria-hidden="true" tabindex="-1" hidden>
+  <div class="modalhead"><div><h2 id="shippingTitle">運費分攤</h2><p>輸入每個人實際秤到的陀螺重量</p></div><button class="close-modal" id="closeShipping" aria-label="關閉運費視窗">×</button></div>
+  <div class="modalbody">
+    <div class="shipping-settings">
+      <div class="shipfield"><label for="shipTotalWeight">兩箱總重量</label><div class="shipinput"><input id="shipTotalWeight" type="number" min="0.1" step="0.1" value="13"><span>kg</span></div></div>
+      <div class="shipfield"><label for="shipFee">運費總額</label><div class="shipinput"><input id="shipFee" type="number" min="1" step="1" value="7242"><span>元</span></div></div>
+      <div class="shipfield"><label for="shipBoxB">B箱實秤重量</label><div class="shipinput"><input id="shipBoxB" type="number" min="0" step="0.1" placeholder="例如 8.0"><span>kg</span></div></div>
+      <div class="shipfield"><label>A箱推算重量</label><div class="shipoutput" id="shipBoxA">—</div></div>
+    </div>
+    <div class="shipflow" aria-label="共同重量計算">
+      <div class="shipterm"><span>兩箱總重</span><b id="shipFlowTotal">13.0 kg</b></div><i class="shipop">−</i>
+      <div class="shipterm"><span>五人商品總重</span><b id="shipGoodsTotal">0.0 kg</b></div><i class="shipop">＝</i>
+      <div class="shipterm"><span>剩餘共同重量</span><b id="shipPackingTotal">13.0 kg</b></div><i class="shipop">÷ 5 ＝</i>
+      <div class="shipterm result"><span>分攤方式</span><b>由 5 人平均分攤</b></div>
+    </div>
+    <div class="shipstatus" id="shipStatus" role="status"></div>
+    <div class="tablewrap"><table class="shipping-table"><thead><tr><th>成員</th><th class="num">商品實秤</th><th class="num">陀螺重量運費</th><th class="num">剩餘共同重量的運費</th><th class="num">應付運費</th></tr></thead><tbody id="shippingRows"></tbody><tfoot><tr><td>合計</td><td class="num" id="shipFootGoods">0.0 kg</td><td class="num" id="shipFootItem">0</td><td class="num" id="shipFootCommon">7,242</td><td class="num sum" id="shipFootTotal">7,242</td></tr></tfoot></table></div>
+    <div class="shipnotes"><p><b>計算方式：</b>每人的應付運費＝陀螺重量運費＋剩餘共同重量平均分攤的運費。</p><p><b>每100g運費：</b><span id="shipRate100">56 元</span></p></div>
+  </div>
+  <div class="modalfoot"><span class="small">數值會自動暫存；分攤結果立即更新主表。<br>運費總額變更時，右上角總額同步更新。</span><div class="modalactions"><button class="secondary" id="clearShipping">清除重量</button></div></div>
+</aside>
+<script>
+const items=[["UX-17","隕石青龍 3-70J",129,50,[0,1,1,1,1],"https://static.hobbylandeshop.com/storage/2026/04/2026-6211385617.webp"],["CX-11","帝皇霸權3陀螺套裝",229,100,[1,1,1,1,1],"https://static.hobbylandeshop.com/storage/2026/04/2026-4265450920.webp"],["UX-16","隨機陀螺 Vol.6 時鐘幽景",74,74,[0,0,1,0,0],"https://static.hobbylandeshop.com/storage/2026/04/2026-1761204046.webp"],["UX-15","三陀螺套裝",219,100,[0,1,1,1,1],"https://static.hobbylandeshop.com/storage/2026/04/2026-2179702291.webp"],["CX-07","天馬爆擊 ATr",129,50,[1,0,0,0,1],"https://static.hobbylandeshop.com/storage/2026/04/2026-8072611009.webp"],["BX-35","隨機陀螺 Vol.4",74,74,[4,0,8,8,8],"https://static.hobbylandeshop.com/storage/2026/04/2026-1801983075.webp"],["BX-23","鳳凰飛翼 9-60GF",129,50,[1,0,0,0,0],"https://static.hobbylandeshop.com/storage/2026/04/2026-4642901907.webp"],["BX-09","積分測速器",189,100,[1,1,1,1,1],"https://static.hobbylandeshop.com/storage/2026/05/0-4416186751.webp"],["UX-11","衝擊龍神 9-60LR",129,50,[1,0,0,0,0],"https://static.hobbylandeshop.com/storage/2026/04/2026-6088944084.webp"],["CX-08","隨機陀螺 Vol.8",74,74,[0,0,2,2,2],"https://static.hobbylandeshop.com/storage/2026/04/2026-7752131734.webp"],["UX-19","子彈獅鷲",139,100,[1,0,0,0,0],"https://static.hobbylandeshop.com/storage/2026/04/CX-17-8610754401.webp"],["UX-18","隨機陀螺 Vol.8",74,74,[0,0,0,1,0],"https://static.hobbylandeshop.com/storage/2026/04/2026-3876796918.webp"],["CX-13","巴哈姆特閃擊 BK1-50I",109,50,[1,0,0,0,0],"https://static.hobbylandeshop.com/storage/2026/04/2026-9146082032.webp"]];
+const people=[{"name":"脖子","qty":11,"d":796,"t":553,"dTwd":3213,"tTwd":2234},{"name":"64","qty":4,"d":350,"t":416,"dTwd":1413,"tTwd":1681},{"name":"小老","qty":15,"d":1164,"t":416,"dTwd":4699,"tTwd":1681},{"name":"小李","qty":15,"d":1164,"t":416,"dTwd":4699,"tTwd":1680},{"name":"肉鮑","qty":15,"d":1140,"t":495,"dTwd":4602,"tTwd":2000}];
+const money=n=>Math.round(n).toLocaleString('zh-TW');
+const unit=x=>x[3]*18626/4614+(x[2]-x[3])*9276/2296;
+const productTotal=people.reduce((sum,p)=>sum+p.dTwd+p.tTwd,0);
+const shippingWeights=people.map(()=>0),shippingFees=people.map(()=>0),draftShippingFees=people.map(()=>0);
+let shippingApplied=true;
+const shipKg=n=>(Math.round(n*10)/10).toFixed(1)+' kg';
+function renderShippingRows(){
+  document.getElementById('shippingRows').innerHTML=personOrder.map(i=>'<tr data-id="'+i+'"><td class="person">'+people[i].name+'</td><td class="num"><div class="weightinput"><input class="shipWeight" data-id="'+i+'" type="number" min="0" step="0.1" inputmode="decimal" value="'+(shippingWeights[i]||'')+'" placeholder="0.0" aria-label="'+people[i].name+'的商品實秤重量"><span>kg</span></div></td><td class="num feePart" data-ship="item">—</td><td class="num feePart" data-ship="common">—</td><td class="num sum" data-ship="total">—</td></tr>').join('');
+  document.querySelectorAll('.shipWeight').forEach(input=>input.addEventListener('input',()=>{shippingWeights[Number(input.dataset.id)]=Math.max(0,Math.round((Number(input.value)||0)*10)/10);shippingApplied=true;calculateShipping();saveReportState();}));
+  calculateShipping();
+}
+function calculateShipping(){
+  const total=Math.round((Number(document.getElementById('shipTotalWeight').value)||0)*10)/10;
+  const feeInput=Number(document.getElementById('shipFee').value)||0;
+  const fee=Math.round(feeInput);
+  const bValue=document.getElementById('shipBoxB').value;
+  const boxB=bValue===''?null:Number(bValue);
+  const itemUnits=shippingWeights.map(w=>Math.round(w*10));
+  const goods=itemUnits.reduce((a,b)=>a+b,0)/10;
+  const packing=total-goods;
+  const per=packing/people.length;
+  const invalid=total<=0||feeInput<0||packing<0||(boxB!==null&&(boxB<0||boxB>total));
+  document.getElementById('shipStatus').textContent=total<=0?'請輸入大於0的兩箱總重量。':packing<0?'五人的商品實秤重量已超過兩箱總重量，請檢查輸入。':boxB!==null&&(boxB<0||boxB>total)?'B箱重量不能大於兩箱總重量。':'';
+  document.getElementById('shipBoxA').textContent=boxB===null||boxB<0||boxB>total?'—':shipKg(total-boxB);
+  document.getElementById('shipFlowTotal').textContent=shipKg(total);
+  document.getElementById('shipGoodsTotal').textContent=shipKg(goods);
+  document.getElementById('shipPackingTotal').textContent=invalid?'—':shipKg(packing);
+  document.getElementById('shipRate100').textContent=total>0?money(fee/(total*10))+' 元':'—';
+  const floorMoney=value=>Math.floor(value+1e-9);
+  const itemRounded=(invalid?people.map(()=>0):itemUnits.map(u=>u/10/total*fee)).map(floorMoney);
+  const commonRounded=(invalid?people.map(()=>0):people.map(()=>per/total*fee)).map(floorMoney);
+  if(!invalid){
+    const meatIndex=people.findIndex(p=>p.name==='肉鮑');
+    const current=itemRounded.reduce((a,b)=>a+b,0)+commonRounded.reduce((a,b)=>a+b,0);
+    commonRounded[meatIndex]+=fee-current;
+  }
+  people.forEach((_,i)=>draftShippingFees[i]=itemRounded[i]+commonRounded[i]);
+  document.querySelectorAll('#shippingRows tr').forEach(tr=>{const i=Number(tr.dataset.id);tr.querySelector('[data-ship="item"]').innerHTML=invalid?'—':money(itemRounded[i]);tr.querySelector('[data-ship="common"]').innerHTML=invalid?'—':money(commonRounded[i]);tr.querySelector('[data-ship="total"]').innerHTML=invalid?'—':money(draftShippingFees[i]);});
+  document.getElementById('shipFootGoods').textContent=shipKg(goods);
+  document.getElementById('shipFootItem').textContent=invalid?'—':money(itemRounded.reduce((a,b)=>a+b,0));
+  document.getElementById('shipFootCommon').textContent=invalid?'—':money(commonRounded.reduce((a,b)=>a+b,0));
+  document.getElementById('shipFootTotal').textContent=invalid?'—':money(draftShippingFees.reduce((a,b)=>a+b,0));
+  if(!invalid&&shippingApplied){draftShippingFees.forEach((v,i)=>shippingFees[i]=v);updateShippingSummary();}
+  return !invalid;
+}
+function updateShippingSummary(){
+  const shippingTotal=Math.max(0,Math.round(Number(document.getElementById('shipFee').value)||0));
+  document.getElementById('summaryTitle').textContent=shippingWeights.some(weight=>weight>0)?'每人費用總表 (運費:依照重量分攤)':'每人費用總表 (運費:直接/5)';
+  document.querySelectorAll('[data-summary-ship]').forEach(cell=>{const i=Number(cell.dataset.summaryShip);cell.textContent=shippingApplied?money(shippingFees[i]):'—';cell.classList.toggle('zero',!shippingApplied);});
+  document.querySelectorAll('[data-summary-total]').forEach(cell=>{const i=Number(cell.dataset.summaryTotal);cell.textContent=money(people[i].dTwd+people[i].tTwd+(shippingApplied?shippingFees[i]:0));});
+  document.getElementById('summaryShippingTotal').textContent=money(shippingTotal);
+  document.getElementById('summaryGrandTotal').textContent=money(productTotal+shippingTotal);
+  document.getElementById('shippingStrip').textContent=money(shippingTotal)+' 元';
+  document.getElementById('headerTotalLabel').textContent='商品＋運費總費用';
+  document.getElementById('headerGrandTotal').innerHTML=money(productTotal+shippingTotal)+'<small>元</small>';
+  if(chosen>=0) document.getElementById('selection').textContent=people[chosen].name+' · '+people[chosen].qty+' 件 · 總費用 '+money(people[chosen].dTwd+people[chosen].tTwd+(shippingApplied?shippingFees[chosen]:0))+' 元';
+}
+let personOrder=people.map((_,i)=>i),itemOrder=items.map((_,i)=>i),chosen=-1;
+const select=document.getElementById('personSelect');
+select.innerHTML='<option value="-1">全部成員</option>'+people.map((p,i)=>'<option value="'+i+'">'+p.name+'</option>').join('');
+const reportStateKey='beyblade-group-report-state-v2';
+let restoringReportState=false,lastReportUpdate=0;
+const reportChannel='BroadcastChannel' in window?new BroadcastChannel('beyblade-group-report-state-v2'):null;
+function currentReportState(){
+  const updatedAt=Math.max(Date.now(),lastReportUpdate+1);
+  return {version:2,updatedAt,shipTotalWeight:document.getElementById('shipTotalWeight').value,shipFee:document.getElementById('shipFee').value,shipBoxB:document.getElementById('shipBoxB').value,shippingWeights:[...shippingWeights],shippingApplied};
+}
+function saveReportState(){
+  if(restoringReportState)return;
+  const state=currentReportState();lastReportUpdate=state.updatedAt;
+  try{localStorage.setItem(reportStateKey,JSON.stringify(state));}catch{}
+  reportChannel?.postMessage(state);
+}
+function applyReportState(state){
+  if(!state||state.version!==2||!Array.isArray(state.shippingWeights)||state.shippingWeights.length!==people.length)return false;
+  const updatedAt=Number(state.updatedAt)||0;if(updatedAt&&updatedAt<=lastReportUpdate)return false;
+  restoringReportState=true;lastReportUpdate=updatedAt||Date.now();
+  document.getElementById('shipTotalWeight').value=state.shipTotalWeight??'13';
+  document.getElementById('shipFee').value=state.shipFee??'7242';
+  document.getElementById('shipBoxB').value=state.shipBoxB??'';
+  state.shippingWeights.forEach((value,i)=>shippingWeights[i]=Math.max(0,Math.round((Number(value)||0)*10)/10));
+  shippingApplied=true;
+  if(!calculateShipping())shippingApplied=false;
+  render();
+  if(!document.getElementById('shippingDrawer').hidden)renderShippingRows();
+  restoringReportState=false;
+  return true;
+}
+function restoreReportState(){
+  try{const saved=localStorage.getItem(reportStateKey);return saved?applyReportState(JSON.parse(saved)):false;}catch{return false;}
+}
+window.addEventListener('storage',event=>{if(event.key!==reportStateKey||!event.newValue)return;try{applyReportState(JSON.parse(event.newValue));}catch{}});
+reportChannel?.addEventListener('message',event=>applyReportState(event.data));
+function grip(type,i,label){return '<td class="gripcol"><button class="grip" aria-label="拖曳'+label+'，或按上下方向鍵排序" data-type="'+type+'" data-id="'+i+'">⠿</button></td>';}
+function render(){
+document.getElementById('peopleRows').innerHTML=personOrder.map(i=>{const p=people[i],ship=shippingApplied?shippingFees[i]:null;return '<tr data-id="'+i+'">'+grip('person',i,p.name)+'<td><button class="name" data-person="'+i+'">'+p.name+'</button></td><td class="num">'+p.qty+'</td><td class="num"><span class="amount-stack"><strong>'+money(p.dTwd+p.tTwd)+'</strong><small>訂金 '+money(p.dTwd)+' ＋ 尾款 '+money(p.tTwd)+'</small></span></td><td class="num '+(shippingApplied?'':'zero')+'" data-summary-ship="'+i+'">'+(shippingApplied?money(ship):'—')+'</td><td class="num sum" data-summary-total="'+i+'">'+money(p.dTwd+p.tTwd+(ship||0))+'</td></tr>';}).join('');
+updateShippingSummary();
+const showPeople=chosen<0?personOrder:[chosen];
+document.getElementById('orderHead').innerHTML='<tr><th class="gripcol"></th><th>型號／商品</th><th class="num">台幣單價</th>'+showPeople.map(i=>'<th class="num">'+people[i].name+'</th>').join('')+(chosen<0?'<th class="num">總數量</th>':'')+'</tr>';
+document.querySelector('.details-table').style.minWidth=chosen<0?'1040px':'550px';
+document.getElementById('orderRows').innerHTML=itemOrder.filter(i=>chosen<0||items[i][4][chosen]>0).map(i=>{const x=items[i];return '<tr data-id="'+i+'">'+grip('item',i,x[0])+'<td><div class="productcell"><img class="productimg" src="'+x[5]+'" alt="'+x[0]+' '+x[1]+'" loading="lazy"><div><span class="model">'+x[0]+'</span><span class="product">'+x[1]+'</span></div></div></td><td class="num unit">'+money(unit(x))+'</td>'+showPeople.map(j=>'<td class="num '+(x[4][j]?'':'zero')+'">'+(x[4][j]||'—')+'</td>').join('')+(chosen<0?'<td class="num">'+x[4].reduce((a,b)=>a+b,0)+'</td>':'')+'</tr>';}).join('');
+document.getElementById('orderFoot').innerHTML='<tr><td class="gripcol"></td><td>訂購數量合計</td><td></td>'+showPeople.map(i=>'<td class="num">'+people[i].qty+'</td>').join('')+(chosen<0?'<td class="num">60</td>':'')+'</tr>';
+document.getElementById('selection').textContent=chosen<0?'':people[chosen].name+' · '+people[chosen].qty+' 件 · 總費用 '+money(people[chosen].dTwd+people[chosen].tTwd+(shippingApplied?shippingFees[chosen]:0))+' 元';
+document.querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',()=>{chosen=Number(b.dataset.person);select.value=String(chosen);render();document.getElementById('orders').scrollIntoView({behavior:'smooth',block:'start'});}));
+attachDrag();
+}
+function toast(s){document.getElementById('toast').textContent=s;setTimeout(()=>document.getElementById('toast').textContent='',2500);}
+function attachDrag(){
+document.querySelectorAll('.grip').forEach(b=>{
+b.addEventListener('keydown',e=>{if(!['ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const arr=b.dataset.type==='person'?personOrder:itemOrder;const from=arr.indexOf(Number(b.dataset.id)),to=from+(e.key==='ArrowUp'?-1:1);if(to<0||to>=arr.length)return;[arr[from],arr[to]]=[arr[to],arr[from]];const type=b.dataset.type,id=b.dataset.id;render();document.querySelector('.grip[data-type="'+type+'"][data-id="'+id+'"]').focus();});
+const startDrag=e=>{
+if(e.type==='pointerdown'&&e.pointerType==='mouse')return;
+if(e.button!==undefined&&e.button!==0)return;
+e.preventDefault();const row=b.closest('tr'),body=row.parentElement,type=b.dataset.type;row.classList.add('dragging');
+const isTouch=e.type==='pointerdown',moveEvent=isTouch?'pointermove':'mousemove',endEvent=isTouch?'pointerup':'mouseup';
+const move=ev=>{ev.preventDefault();const target=document.elementFromPoint(ev.clientX,ev.clientY)?.closest('tr');if(!target||target===row||target.parentElement!==body)return;const r=target.getBoundingClientRect();body.insertBefore(row,ev.clientY<r.top+r.height/2?target:target.nextSibling);};
+const end=()=>{document.removeEventListener(moveEvent,move);document.removeEventListener(endEvent,end);document.removeEventListener('pointercancel',end);row.classList.remove('dragging');const visible=[...body.querySelectorAll('tr')].map(r=>Number(r.dataset.id));if(type==='person')personOrder=visible;else{const slots=new Set(visible);let k=0;itemOrder=itemOrder.map(x=>slots.has(x)?visible[k++]:x);}render();};
+document.addEventListener(moveEvent,move,{passive:false});document.addEventListener(endEvent,end,{once:true});document.addEventListener('pointercancel',end,{once:true});
+};
+b.addEventListener('mousedown',startDrag);b.addEventListener('pointerdown',startDrag);
+});
+}
+const shippingDrawer=document.getElementById('shippingDrawer'),shippingBackdrop=document.getElementById('shippingBackdrop');
+function openShippingDrawer(){renderShippingRows();shippingBackdrop.hidden=false;shippingDrawer.hidden=false;requestAnimationFrame(()=>{shippingBackdrop.classList.add('is-open');shippingDrawer.classList.add('is-open');});shippingDrawer.scrollTop=0;shippingDrawer.setAttribute('aria-hidden','false');shippingDrawer.focus();}
+function closeShippingDrawer(){shippingBackdrop.classList.remove('is-open');shippingDrawer.classList.remove('is-open');shippingDrawer.setAttribute('aria-hidden','true');setTimeout(()=>{if(!shippingDrawer.classList.contains('is-open')){shippingBackdrop.hidden=true;shippingDrawer.hidden=true;}},280);}
+document.getElementById('openShipping').addEventListener('click',openShippingDrawer);
+document.getElementById('closeShipping').addEventListener('click',closeShippingDrawer);
+shippingBackdrop.addEventListener('click',closeShippingDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shippingDrawer.hidden)closeShippingDrawer();});
+['shipTotalWeight','shipFee','shipBoxB'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{calculateShipping();updateShippingSummary();saveReportState();}));
+document.getElementById('clearShipping').addEventListener('click',()=>{shippingWeights.fill(0);document.getElementById('shipTotalWeight').value='13';document.getElementById('shipFee').value='7242';document.getElementById('shipBoxB').value='';shippingApplied=true;renderShippingRows();saveReportState();});
+select.addEventListener('change',()=>{chosen=Number(select.value);render();});
+document.getElementById('reset').addEventListener('click',()=>{personOrder=people.map((_,i)=>i);itemOrder=items.map((_,i)=>i);chosen=-1;select.value='-1';render();});
+document.getElementById('copy').addEventListener('click',async()=>{const ids=chosen<0?personOrder:[chosen];const text=ids.map(i=>{const p=people[i],ship=shippingApplied?shippingFees[i]:0;return p.name+'｜共 '+p.qty+' 件｜總費用 '+money(p.dTwd+p.tTwd+ship)+' 元\n訂金 '+money(p.dTwd)+' 元；尾款 '+money(p.tTwd)+' 元'+(shippingApplied?'；運費 '+money(ship)+' 元':'')+'\n'+itemOrder.filter(j=>items[j][4][i]).map(j=>items[j][0]+' '+items[j][1]+' ×'+items[j][4][i]).join('\n');}).join('\n\n')+'\n\n金額皆為台幣；已由團購人全額代墊。';try{await navigator.clipboard.writeText(text);toast('明細已複製');}catch{toast('請選取表格文字複製。');}});
+document.getElementById('download').addEventListener('click',()=>{const root=document.documentElement.cloneNode(true);root.querySelector('#shippingDrawer').hidden=true;root.querySelector('#shippingBackdrop').hidden=true;const saved=document.createElement('script');saved.textContent='personOrder='+JSON.stringify(personOrder)+';itemOrder='+JSON.stringify(itemOrder)+';chosen='+chosen+';shippingWeights.splice(0,shippingWeights.length,...'+JSON.stringify(shippingWeights)+');shippingFees.splice(0,shippingFees.length,...'+JSON.stringify(shippingFees)+');shippingApplied='+shippingApplied+';document.getElementById("shipTotalWeight").value='+JSON.stringify(document.getElementById('shipTotalWeight').value)+';document.getElementById("shipFee").value='+JSON.stringify(document.getElementById('shipFee').value)+';document.getElementById("shipBoxB").value='+JSON.stringify(document.getElementById('shipBoxB').value)+';select.value=String(chosen);render();';root.querySelector('body').appendChild(saved);const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+root.outerHTML],{type:'text/html;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='戰鬥陀螺團購總結.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+document.getElementById('print').addEventListener('click',()=>window.print());
+if(!restoreReportState()){calculateShipping();render();}
+</script></body></html>
